@@ -13,11 +13,12 @@ public class ApplicationContext {
     }
 
     static {
-        TestPostService testPostService = new TestPostService();
-        beans.put("testPostService", testPostService);
-
         TestPostRepository testPostRepository = new TestPostRepository();
         beans.put("testPostRepository", testPostRepository);
+
+        TestPostService testPostService = new TestPostService(testPostRepository);
+        beans.put("testPostService", testPostService);
+
     }
 
     public <T> T genBean(String beanName) {
