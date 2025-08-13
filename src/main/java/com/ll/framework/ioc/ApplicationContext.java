@@ -1,6 +1,7 @@
 package com.ll.framework.ioc;
 
 import com.ll.domain.testPost.testPost.repository.TestPostRepository;
+import com.ll.domain.testPost.testPost.service.TestFacadePostService;
 import com.ll.domain.testPost.testPost.service.TestPostService;
 
 import java.util.HashMap;
@@ -19,6 +20,8 @@ public class ApplicationContext {
         TestPostService testPostService = new TestPostService(testPostRepository);
         beans.put("testPostService", testPostService);
 
+        TestFacadePostService testFacadePostService = new TestFacadePostService(testPostService, testPostRepository);
+        beans.put("testFacadePostService", testFacadePostService);
     }
 
     public <T> T genBean(String beanName) {
